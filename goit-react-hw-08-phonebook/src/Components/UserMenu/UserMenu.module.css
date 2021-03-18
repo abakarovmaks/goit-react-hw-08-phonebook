@@ -1,0 +1,28 @@
+.MenuContainer {
+  display: flex;
+  align-items: center;
+}
+
+.MenuAvatar {
+  margin-right: 12px;
+}
+
+.MenuName {
+  font-weight: 700;
+  margin-right: 12px;
+  color: black;
+}
+
+.MenuButton {
+  cursor: pointer;
+  padding: 8px 15px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 2px;
+}
+
+.MenuButton:hover,
+.MenuButton:focus {
+  background-color: red;
+}

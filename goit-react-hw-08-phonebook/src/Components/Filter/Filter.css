@@ -1,0 +1,42 @@
+.form {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 3px 6px rgb(0 0 0 / 16%), 0 3px 6px rgb(0 0 0 / 23%);
+  padding: 10px 75px;
+
+  text-align: center;
+}
+
+.title {
+  font-family: Roboto, sans-serif;
+  font-size: 20px;
+
+  background-color: rgb(247, 236, 215);
+}
+
+.input {
+  font-family: Roboto, sans-serif;
+  font-size: 16px;
+}
+
+.Filter-fade-enter {
+  opacity: 0;
+  transform: scale(0.1);
+}
+
+.Filter-fade-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: all 250ms linear;
+}
+
+.Filter-fade-exit {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.Filter-fade-exit-active {
+  opacity: 0;
+  transform: scale(0.1);
+  transition: all 250ms linear;
+}

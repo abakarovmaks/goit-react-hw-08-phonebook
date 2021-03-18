@@ -1,0 +1,12 @@
+.Title {
+  color: rgb(18, 72, 248);
+}
+
+.Title-SlideIn-appear {
+  transform: translateX(-400%);
+}
+
+.Title-SlideIn-appear-active {
+  transform: translateX(0);
+  transition: transform 500ms linear;
+}
