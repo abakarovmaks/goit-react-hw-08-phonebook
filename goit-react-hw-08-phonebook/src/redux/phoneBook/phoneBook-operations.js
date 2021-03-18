@@ -11,7 +11,7 @@ import {
   fetchContactError,
 } from './phoneBook-actions';
 
-axios.defaults.baseURL = 'http://localhost:3001';
+// axios.defaults.baseURL = 'http://localhost:3001';
 
 const fetchContacts = () => (dispatch) => {
   dispatch(fetchContactRequest());
@@ -62,7 +62,7 @@ const deleteContact = (contactId) => (dispatch) => {
   axios
     .delete(`/contacts/${contactId}`)
     .then(() => dispatch(deleteContactSuccess(contactId)))
-    .catch((error) => dispatch(deleteContactError(error)));
+    .catch((error) => dispatch(deleteContactError(error.message)));
 };
 
 const operations = {

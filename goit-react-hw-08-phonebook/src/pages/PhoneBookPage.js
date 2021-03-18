@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Layout from '../components/Layout/Layout';
-import ContactForm from '../components/ContactForm/ContactForm';
-import Filter from '../components/Filter/Filter';
-import ContactList from '../components/ContactList/ContactList';
+import Container from '../Components/Container/Container';
+import ContactForm from '../Components/ContactForm/ContactForm';
+import Filter from '../Components/Filter/Filter';
+import ContactList from '../Components/ContactList/ContactList';
 import { CSSTransition } from 'react-transition-group';
-import Logo from '../components/Logo/Logo';
+import Title from '../Components/Title/Title';
 import operations from '../redux/phoneBook/phoneBook-operations';
-import Spinner from '../components/Spinner/Spinner';
-import Notification from '../components/Notification/Notification';
+// import Spinner from '../components/Spinner/Spinner';
+import Notification from '../Components/Notification/Notification';
 import selectors from '../redux/phoneBook/phoneBook-selectors';
 
 class PhoneBookPage extends Component {
@@ -26,8 +26,8 @@ class PhoneBookPage extends Component {
 
   render() {
     return (
-      <Layout>
-        <Logo />
+      <Container>
+        <Title />
 
         {this.props.error && (
           <Notification message={`ERROR: ${this.props.error.message}.`} />
@@ -37,7 +37,7 @@ class PhoneBookPage extends Component {
 
         <Filter />
 
-        {this.props.isLoadingContacts && <Spinner />}
+        {/* {this.props.isLoadingContacts && <Spinner />} */}
 
         <CSSTransition
           in={this.props.contacts.length > 0}
@@ -46,7 +46,7 @@ class PhoneBookPage extends Component {
         >
           <ContactList />
         </CSSTransition>
-      </Layout>
+      </Container>
     );
   }
 }

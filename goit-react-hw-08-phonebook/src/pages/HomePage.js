@@ -12,7 +12,7 @@ const HomePage = () => {
         unmountOnExit
       >
         <h1 className="Title">
-          Hello{' '}
+          Hello
           <span role="img" aria-label="Иконка приветствия">
             💁‍♀️
           </span>
@@ -20,7 +20,6 @@ const HomePage = () => {
       </CSSTransition>
       <div className="HPcontainer">
         <h2>Log in and I help you save and filter your favorite contacts</h2>
-        <h3>Your Phonebook</h3>
       </div>
     </>
   );

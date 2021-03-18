@@ -34,7 +34,7 @@ class ContactForm extends Component {
       return;
     }
     if (number === '') {
-      this.setMessage('Enter concact phone, please!');
+      this.setMessage('Enter contact phone, please!');
       return;
     }
     if (
@@ -66,7 +66,11 @@ class ContactForm extends Component {
     return (
       <div className={styles.container}>
         <Notification message={message} />
-        <form className={styles.form} onSubmit={this.handleSubmit}>
+        <form
+          className={styles.form}
+          onSubmit={this.handleSubmit}
+          autoComplete="0ff"
+        >
           <label>
             <input
               className={styles.input}

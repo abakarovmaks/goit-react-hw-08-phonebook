@@ -1,35 +1,61 @@
-import React from 'react';
+import React, { Component, Suspense, lazy } from 'react';
+import { Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import AppBar from './Components/AppBar';
 import Container from './Components/Container/Container';
-import Title from './Components/Title/Title';
-import ContactForm from './Components/ContactForm/ContactForm';
-import ContactList from './Components/ContactList/ContactList';
-import Filter from './Components/Filter/Filter';
-import { CSSTransition } from 'react-transition-group';
+import authOperations from './redux/auth/auth-operations';
+import PrivateRoute from './Components/PrivateRoute';
+import PublicRoute from './Components/PublicRoute';
 
-const App = ({ contacts }) => {
-  return (
-    <Container>
-      <Title />
+const HomePage = lazy(() => import('./pages/HomePage'));
+const RegisterPage = lazy(() => import('./pages/RegisterPage'));
+const LoginPage = lazy(() => import('./pages/LoginPage'));
+const PhoneBookPage = lazy(() => import('./pages/PhoneBookPage'));
 
-      <ContactForm />
+class App extends Component {
+  static propTypes = {
+    onGetCurrentUser: PropTypes.func,
+  };
 
-      <Filter />
+  componentDidMount() {
+    this.props.onGetCurrentUser();
+  }
 
-      <CSSTransition in={contacts.length > 0} timeout={0} unmountOnExit>
-        <ContactList />
-      </CSSTransition>
-    </Container>
-  );
+  render() {
+    return (
+      <Container>
+        <AppBar />
+
+        <Suspense>
+          <Switch>
+            <PublicRoute exact path="/" component={HomePage} />
+            <PublicRoute
+              path="/register"
+              redirectTo="/contacts"
+              restricted
+              component={RegisterPage}
+            />
+            <PublicRoute
+              path="/login"
+              redirectTo="/contacts"
+              restricted
+              component={LoginPage}
+            />
+            <PrivateRoute
+              path="/contacts"
+              component={PhoneBookPage}
+              redirectTo="/login"
+            />
+          </Switch>
+        </Suspense>
+      </Container>
+    );
+  }
+}
+
+const mapDispatchToProps = {
+  onGetCurrentUser: authOperations.getCurrentUser,
 };
 
-App.propTypes = {
-  contacts: PropTypes.arrayOf(PropTypes.object),
-};
-
-const mapStateToProps = (state) => ({
-  contacts: state.phoneBook.contacts,
-});
-
-export default connect(mapStateToProps, null)(App);
+export default connect(null, mapDispatchToProps)(App);

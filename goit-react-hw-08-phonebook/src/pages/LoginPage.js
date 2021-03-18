@@ -38,7 +38,7 @@ class LoginPage extends Component {
 
         <form className="Form" onSubmit={this.handleSubmit} autoComplete="off">
           <label htmlFor="email" className="Label">
-            Email{' '}
+            Email
           </label>
           <input
             className="Input"
