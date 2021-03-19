@@ -9,7 +9,7 @@ import './index.css';
 
 ReactDOM.render(
   <Provider store={store.store}>
-    <PersistGate persistor={store.persistor}>
+    <PersistGate loading={null} persistor={store.persistor}>
       <BrowserRouter>
         <App />
       </BrowserRouter>

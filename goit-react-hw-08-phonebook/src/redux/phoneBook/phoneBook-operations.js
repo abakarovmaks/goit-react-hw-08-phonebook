@@ -11,26 +11,19 @@ import {
   fetchContactError,
 } from './phoneBook-actions';
 
-// axios.defaults.baseURL = 'http://localhost:3001';
-
-const fetchContacts = () => (dispatch) => {
+const fetchContacts = () => async (dispatch) => {
   dispatch(fetchContactRequest());
 
-  axios
-    .get('/contacts')
-    .then(({ data }) => dispatch(fetchContactSuccess(data)))
-    .catch((error) => dispatch(fetchContactError(error)));
+  try {
+    const { data } = await axios.get('/contacts');
 
-  // try {
-  //   const { data } = axios.get('/contacts');
-
-  //   dispatch(fetchContactSuccess(data));
-  // } catch (error) {
-  //   dispatch(fetchContactError(error));
-  // }
+    dispatch(fetchContactSuccess(data));
+  } catch (error) {
+    dispatch(fetchContactError(error.message));
+  }
 };
 
-const addContact = (name, number) => async (dispatch) => {
+const addContact = (name, number) => (dispatch) => {
   const contact = {
     name,
     number,
@@ -41,19 +34,7 @@ const addContact = (name, number) => async (dispatch) => {
   axios
     .post('/contacts', contact)
     .then(({ data }) => dispatch(addContactSuccess(data)))
-    .catch((error) => dispatch(addContactError(error)));
-
-  // const contact = { name, number };
-
-  // dispatch(addContactRequest());
-
-  // try {
-  //   const { data } = axios.post('/contacts', contact);
-
-  //   dispatch(addContactSuccess(data));
-  // } catch (error) {
-  //   dispatch(addContactError(error));
-  // }
+    .catch((error) => dispatch(addContactError(error.message)));
 };
 
 const deleteContact = (contactId) => (dispatch) => {
@@ -66,9 +47,9 @@ const deleteContact = (contactId) => (dispatch) => {
 };
 
 const operations = {
+  fetchContacts,
   addContact,
   deleteContact,
-  fetchContacts,
 };
 
 export default operations;

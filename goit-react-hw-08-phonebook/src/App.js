@@ -1,6 +1,5 @@
 import React, { Component, Suspense, lazy } from 'react';
 import { Switch } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import AppBar from './Components/AppBar';
 import Container from './Components/Container/Container';
@@ -14,10 +13,6 @@ const LoginPage = lazy(() => import('./pages/LoginPage'));
 const PhoneBookPage = lazy(() => import('./pages/PhoneBookPage'));
 
 class App extends Component {
-  static propTypes = {
-    onGetCurrentUser: PropTypes.func,
-  };
-
   componentDidMount() {
     this.props.onGetCurrentUser();
   }
@@ -27,7 +22,7 @@ class App extends Component {
       <Container>
         <AppBar />
 
-        <Suspense>
+        <Suspense fallback={<p>Загружаем...</p>}>
           <Switch>
             <PublicRoute exact path="/" component={HomePage} />
             <PublicRoute
