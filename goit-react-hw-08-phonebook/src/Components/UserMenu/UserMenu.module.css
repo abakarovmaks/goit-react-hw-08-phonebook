@@ -1,19 +1,19 @@
-.MenuContainer {
+.container {
   display: flex;
   align-items: center;
 }
 
-.MenuAvatar {
+.avatar {
   margin-right: 12px;
 }
 
-.MenuName {
+.name {
   font-weight: 700;
   margin-right: 12px;
   color: black;
 }
 
-.MenuButton {
+.button {
   cursor: pointer;
   padding: 8px 15px;
   background-color: red;
@@ -22,7 +22,7 @@
   border-radius: 2px;
 }
 
-.MenuButton:hover,
-.MenuButton:focus {
+.button:hover,
+.button:focus {
   background-color: red;
 }

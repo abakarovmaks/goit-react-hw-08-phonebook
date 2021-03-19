@@ -12,21 +12,23 @@ const token = {
   },
 };
 
+// Операция РЕГИСТРАЦИИ
 const register = (credential) => async (dispatch) => {
   dispatch(authActions.registerRequest());
 
   try {
     const response = await axios.post('/users/signup', credential);
 
-    token.set(response.data.token);
+    // token.set(response.data.token);
     dispatch(authActions.registerSuccess(response.data));
   } catch (error) {
     dispatch(authActions.registerError(error.message));
   }
 };
 
+// Операция ВХОДА
 const logIn = (credential) => async (dispatch) => {
-  dispatch(authActions.registerRequest());
+  dispatch(authActions.loginRequest());
 
   try {
     const response = await axios.post('/users/login', credential);
@@ -38,6 +40,7 @@ const logIn = (credential) => async (dispatch) => {
   }
 };
 
+// Операция ВЫХОДА
 const logOut = () => async (dispatch) => {
   dispatch(authActions.logoutRequest());
 
@@ -51,6 +54,7 @@ const logOut = () => async (dispatch) => {
   }
 };
 
+// Операция ПОЛУЧЕНИЯ ТЕКУЩЕГО ЮЗЕРА
 const getCurrentUser = () => async (dispatch, getState) => {
   const {
     auth: { token: persistedToken },
