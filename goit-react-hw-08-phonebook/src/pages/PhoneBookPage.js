@@ -8,8 +8,7 @@ import ContactList from '../Components/ContactList/ContactList';
 import { CSSTransition } from 'react-transition-group';
 import Title from '../Components/Title/Title';
 import operations from '../redux/phoneBook/phoneBook-operations';
-// import Spinner from '../components/Spinner/Spinner';
-import Notification from '../Components/Notification/Notification';
+
 import selectors from '../redux/phoneBook/phoneBook-selectors';
 
 class PhoneBookPage extends Component {
@@ -29,15 +28,9 @@ class PhoneBookPage extends Component {
       <Container>
         <Title />
 
-        {this.props.error && (
-          <Notification message={`ERROR: ${this.props.error.message}.`} />
-        )}
-
         <ContactForm />
 
         <Filter />
-
-        {/* {this.props.isLoadingContacts && <Spinner />} */}
 
         <CSSTransition
           in={this.props.contacts.length > 0}

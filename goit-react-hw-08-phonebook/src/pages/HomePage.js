@@ -14,12 +14,12 @@ const HomePage = () => {
         <h1 className="Title">
           Hello
           <span role="img" aria-label="Иконка приветствия">
-            💁‍♀️
+            👋
           </span>
         </h1>
       </CSSTransition>
       <div className="HPcontainer">
-        <h2>Log in and I help you save and filter your favorite contacts</h2>
+        <h2>Log in, please</h2>
       </div>
     </>
   );

@@ -1,23 +1,34 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import * as phoneBookActions from '../../redux/phoneBook/phoneBook-actions';
+import * as phoneBookActions from '../../../redux/phoneBook/phoneBook-actions';
 import { connect } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
 import './Notification.css';
-import selectors from '../../redux/phoneBook/phoneBook-selectors';
+import selectors from '../../../redux/phoneBook/phoneBook-selectors';
+import authSelectors from '../../../redux/auth/auth-selectors';
+import authActions from '../../../redux/auth/auth-actions';
 
 class Notification extends Component {
   static propTypes = {
     message: PropTypes.string,
-    error: PropTypes.object,
-    clearError: PropTypes.func,
+    errorPb: PropTypes.object,
+    errorAuth: PropTypes.string,
+    clearErrorPb: PropTypes.func,
+    clearErrorPAuth: PropTypes.func,
   };
 
   componentDidMount() {
-    if (this.props.error) {
+    if (this.props.errorAuth) {
       setTimeout(() => {
-        this.props.clearError();
+        this.props.clearErrorAuth(this.state);
       }, 2500);
+      return;
+    }
+    if (this.props.errorPb) {
+      setTimeout(() => {
+        this.props.clearErrorPb(this.state);
+      }, 2500);
+      return;
     }
   }
 
@@ -38,11 +49,13 @@ class Notification extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  error: selectors.getError(state),
+  errorPb: selectors.getError(state),
+  errorAuth: authSelectors.getError(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  clearError: () => dispatch(phoneBookActions.clearError()),
+  clearErrorPb: () => dispatch(phoneBookActions.clearError()),
+  clearErrorAuth: () => dispatch(authActions.clearError()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Notification);

@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Notification from '../Notification/Notification';
 import PropTypes from 'prop-types';
-import styles from './ContactForm.module.css';
 import operations from '../../redux/phoneBook/phoneBook-operations';
 import selectors from '../../redux/phoneBook/phoneBook-selectors';
+import styles from './ContactForm.module.css';
 
 class ContactForm extends Component {
   state = {
@@ -61,11 +60,11 @@ class ContactForm extends Component {
   };
 
   render() {
-    const { name, number, message } = this.state;
+    const { name, number } = this.state;
 
     return (
       <div className={styles.container}>
-        <Notification message={message} />
+        {/* <Notification message={message} /> */}
         <form
           className={styles.form}
           onSubmit={this.handleSubmit}
